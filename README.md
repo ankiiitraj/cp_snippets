@@ -2,6 +2,8 @@
 Hi community,
 I am sharing my code snippets which I use in competitive programming. You can fork it and can use it by pasting the codes to your sublime text snippets area.
 
+##Important Note : Use #define vi vector <int>
+
 Feel free to add more snippets that you're having through pull requests.
 
 These are the current Tab triggers
