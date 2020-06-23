@@ -1,0 +1,24 @@
+<snippet>
+	<content><![CDATA[
+/* BFS level of each node */
+vi level[200005];
+void bfs(){
+	queue<int> q;
+	q.push(1);
+	level[1] = 0;
+
+	while(!q.empty()){
+		int cur = q.top();
+		q.pop();
+		for(auto itr: adj[cur]){
+			q.push(itr);
+			level[itr] = level[cur] +1;
+		}
+	}
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>bfs</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

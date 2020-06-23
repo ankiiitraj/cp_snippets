@@ -1,0 +1,40 @@
+<snippet>
+	<content><![CDATA[
+/*1-Based indexing*/
+vi tree(4*MAXN, -1);
+void build(vi &a, int l, int r, int root){
+	if(l == r){
+		tree[root] = a[l];
+		return;
+	}
+	build(a, l, (l + r)/2, 2*root);
+	build(a, (l + r)/2 +1, r, 2*root +1);
+	tree[root] = tree[2*root] + tree[2*root +1];
+}
+int query(int ql, int qr, int l, int r, int root){
+	if(ql <= l and qr >= r)
+		return tree[root];
+	if(ql > r or qr < l)
+		return 0;
+	return (query(ql, qr, l, (l + r)/2, 2*root) + query(ql, qr, (l + r)/2 +1, r, 2*root +1));
+}
+void update(int pos, int val, int l, int r, int root, vi &a){
+	if(pos < l or pos > r)
+		return;
+	if(l == r and l == pos){
+		a[l] = val;
+		tree[root] = a[l];
+		return;
+	}
+
+	update(pos, val, l, (l + r)/2, 2*root, a);
+	update(pos, val, (l + r)/2 +1, r, 2*root +1, a);
+	tree[root] = tree[2*root] + tree[2*root +1];
+}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>segment_tree</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
